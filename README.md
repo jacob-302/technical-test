@@ -3,9 +3,9 @@
 ## Pre-requriestes
 
 In order to run this technical test, you will need the following installed:
-* Docker
-* Kubectl
-* Minikube
-* Helm
-
+* [Docker](https://docs.docker.com/engine/install/)
+* [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+* [Minikube](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download)
+* [Helm](https://helm.sh/docs/intro/install/)
+* Make
 
