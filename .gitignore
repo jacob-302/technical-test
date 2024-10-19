@@ -1,0 +1,5 @@
+api/.gradle/
+api/bin/
+**/.idea
+**/build
+**/.vscode
