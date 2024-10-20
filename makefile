@@ -13,7 +13,7 @@ install-sonarqube:
 		-f infra/sonarqube-values.yaml
 
 minikube-start:
-	minikube start --addons=ingress
+	minikube start --cpus=8 --addons=ingress
 
 NAMESPACES = sonarqube concourse
 configure-namespaces:

@@ -32,7 +32,7 @@ jobs:
             javac -J-Xmx32m -version
 
             cd technical-test-git/api
-            ./gradlew test
+            ./gradlew test --no-daemon
         path: /bin/sh
         user: root
     task: run-tests
