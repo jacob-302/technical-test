@@ -66,3 +66,7 @@ sonar {
 		property("sonar.qualitygate.wait", true)
 	}
 }
+
+jar {
+    enabled = false
+}

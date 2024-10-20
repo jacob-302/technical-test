@@ -32,3 +32,16 @@ set-pipeline:
 		set-pipeline \
 		--pipeline java-build \
 		--config concourse/java-build.yaml
+
+docker-build:
+	cd api && \
+	docker build -t technical-test-app --build-arg=git_sha="$$(git rev-parse HEAD | tr -d "\n")" . && \
+	cd ..
+
+
+docker-run:
+	docker run -d -p 8080:8080 --name technical-test-app technical-test-app
+
+docker-stop:
+	docker kill technical-test-app && \
+	docker rm technical-test-app

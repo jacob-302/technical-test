@@ -30,7 +30,7 @@ jobs:
           - -c
           - |
             cd technical-test-git/api
-            ./gradlew test sonarqube --no-daemon
+            ./gradlew assemble test sonarqube --no-daemon
         path: /bin/sh
         user: root
     task: run-tests
