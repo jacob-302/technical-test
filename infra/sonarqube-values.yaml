@@ -1,0 +1,6 @@
+---
+ingress:
+  enabled: true
+  hosts:
+    - name: sonarqube.technical-test.com
+      path: "/"

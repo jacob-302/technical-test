@@ -1,0 +1,12 @@
+---
+concourse:
+  web: 
+    externalUrl: "http://concourse.technical-test.com"
+  worker:
+    runtime: containerd
+
+web:
+  ingress:
+    enabled: true
+    hosts: 
+      - concourse.technical-test.com

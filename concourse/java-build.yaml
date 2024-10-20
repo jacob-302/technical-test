@@ -1,0 +1,39 @@
+resources:
+  - icon: github
+    name: technical-test-git
+    source:
+      uri: https://github.com/jacob-302/technical-test.git
+    type: git
+
+
+jobs:
+- name: test
+  plan:
+  - get: technical-test-git
+    trigger: true
+  - config:
+      caches:
+      - path: $HOME/.m2/repository
+      - path: $HOME/.gradle/caches
+      - path: $HOME/.gradle/wrapper
+      image_resource:
+        source:
+          repository: gradle
+          tag: 8.10-jdk21
+        type: registry-image
+      inputs:
+        - name: technical-test-git
+      platform: linux
+      run:
+        args:
+          - -c
+          - |
+            java -Xmx32m -version
+            javac -J-Xmx32m -version
+
+            cd technical-test-git/api
+            ./gradlew test
+        path: /bin/sh
+        user: root
+    task: run-tests
+  public: true
