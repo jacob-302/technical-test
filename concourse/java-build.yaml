@@ -3,6 +3,7 @@ resources:
     name: technical-test-git
     source:
       uri: https://github.com/jacob-302/technical-test.git
+      branch: concourse
     type: git
 
 
@@ -28,11 +29,8 @@ jobs:
         args:
           - -c
           - |
-            java -Xmx32m -version
-            javac -J-Xmx32m -version
-
             cd technical-test-git/api
-            ./gradlew test --no-daemon
+            ./gradlew test sonarqube --no-daemon
         path: /bin/sh
         user: root
     task: run-tests

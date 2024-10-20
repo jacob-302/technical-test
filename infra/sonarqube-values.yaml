@@ -4,3 +4,6 @@ ingress:
   hosts:
     - name: sonarqube.technical-test.com
       path: "/"
+
+account:
+  adminPassword: Password2024!
