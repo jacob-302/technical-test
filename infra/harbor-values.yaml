@@ -1,0 +1,11 @@
+expose:
+  type: ingress
+  tls:
+    enabled: false
+  ingress:
+    hosts:
+      core: harbor.technical-test.com
+
+externalURL: http://harbor.technical-test.com
+
+existingSecretAdminPassword: harbor-secrets

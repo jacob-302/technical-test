@@ -3,6 +3,7 @@ helm-brave:
 
 install-concourse:
 	helm repo add concourse https://concourse-charts.storage.googleapis.com/ && \
+	helm repo update && \
 	helm upgrade --install concourse concourse/concourse -n concourse \
 		-f infra/concourse-values.yaml
 
@@ -12,10 +13,18 @@ install-sonarqube:
 	helm upgrade --install -n sonarqube sonarqube sonarqube/sonarqube \
 		-f infra/sonarqube-values.yaml
 
-minikube-start:
-	minikube start --cpus=8 --addons=ingress
+install-harbor:
+	kubectl apply -f infra/harbor-secrets.yaml -n harbor && \
+	helm repo add harbor https://helm.goharbor.io && \
+	helm repo update && \
+	helm upgrade --install -n harbor harbor harbor/harbor \
+		-f infra/harbor-values.yaml
 
-NAMESPACES = sonarqube concourse
+
+minikube-start:
+	minikube start --cpus=8 --memory=6G --addons=ingress
+
+NAMESPACES = sonarqube concourse harbor
 configure-namespaces:
 	$(foreach namespace, $(NAMESPACES), kubectl create namespace $(namespace);)
 

@@ -4,9 +4,14 @@ concourse:
     externalUrl: "http://concourse.technical-test.com"
   worker:
     runtime: containerd
+    containerd:
+      allowHostAccess: true 
+      dnsServers:
+        - "192.168.1.1,10.255.255.254,1.1.1.1,10.96.0.10"
 
 web:
   ingress:
     enabled: true
     hosts: 
       - concourse.technical-test.com
+

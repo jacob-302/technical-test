@@ -3,3 +3,4 @@ api/bin/
 **/.idea
 **/build
 **/.vscode
+concourse/secrets

@@ -1,5 +1,9 @@
 # Technical Test
 
+
+# Warning
+This is a PoC only, and should not be used in a live environment. It has been developed with various security issues to enable the demonstration, and is missining important functionality.
+
 ## Pre-requriestes
 
 In order to run this technical test, you will need the following installed:

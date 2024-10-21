@@ -5,10 +5,17 @@ resources:
       uri: https://github.com/jacob-302/technical-test.git
       branch: concourse
     type: git
-
+  - icon: docker
+    name: technical-test-docker
+    type: docker-image
+    source:
+      repository: ((docker-creds.username))/technical-test
+      username: ((docker-creds.username))
+      password: ((docker-creds.password))
 
 jobs:
-- name: test
+- name: test-and-build
+  serial: true
   plan:
   - get: technical-test-git
     trigger: true
@@ -24,6 +31,9 @@ jobs:
         type: registry-image
       inputs:
         - name: technical-test-git
+      outputs:
+        - name: jar
+          path: technical-test-git/api/build/libs
       platform: linux
       run:
         args:
@@ -34,4 +44,12 @@ jobs:
         path: /bin/sh
         user: root
     task: run-tests
+  - put: technical-test-docker
+    params:
+      tag_as_latest: true
+      build: technical-test-git/api
+      build_args:
+        git_sha: "$(cat technical-test-git/.git/refs/heads/main)"
+      tag_file: technical-test-git/.git/refs/heads/main
   public: true
+
